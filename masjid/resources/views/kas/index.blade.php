@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">User</h1>
+            <h1 class="m-0"></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -20,20 +20,20 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
+
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <div class="col-12">
-            <a href="{{route('admin.user.create')}}" class="btn btn-primary mb-3" >Tambah data</a>
+            <a href="{{route('admin.kas.create')}}" class="btn btn-primary mb-3" >Tambah data</a>
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Data User</h3>
+                <h3 class="card-title">Data KAS</h3>
 
                 <div class="card-tools"><form action="{{route('admin.index')}}" method="get">
               <div class="input-group input-group-sm" style="width: 150px;">
                                 
-                                  <input type="text" name="search" class="form-control float-right" value="{{$request->get('search')}}" placeholder="Search">
+                                  <input type="text" name="search" class="form-control float-right" value="" placeholder="Search">
                                   </form>
                                   <div class="input-group-append">
                                     <button type="submit" class="btn btn-default">
@@ -51,9 +51,10 @@
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Image</th>
+                      <th>Tipe</th>
+                      <th>Nominal</th>
+                      <th>Deskripsi</th>
+                      <th>Gambar</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -64,16 +65,35 @@
                             {{$loop->iteration}}
                         </td>
                         <td>
-                            {{$d->name}}
+                        
+                            <?php
+                              $tipe = $d->type;
+                             switch ($tipe){
+                              case 'M':
+                                echo "Kas Masuk";
+                                break;
+                                default:
+                                echo "Kas Keluar";
+                                break;
+                            }
+                            ?>
                         </td>
                         <td>
-                            {{$d->email}}
+                            {{
+                            'Rp. '.number_format($d->nominal, 0, ',', '.')
+                            }}
                         </td>
                         <td>
-                          <img src="{{asset('storage/photo-user/'.$d->image)}}" width="100" alt="">
+                            {{ $d->des                         
+                            }}
+                            
+                        </td>
+                        
+                        <td>
+                          <img src="{{asset('storage/photo-kas/'.$d->image)}}" width="100" alt="">
                         </td>
                         <td>
-                            <a href="{{route('admin.user.edit',['id'=>$d->id])}}" class="btn badge-warning" > <li class="fas fa-pen"> Edit</li> </a>
+                            <a href="{{route('admin.kas.edit',['id'=>$d->id])}}" class="btn badge-warning" > <li class="fas fa-pen"> Edit</li> </a>
                             <a data-toggle="modal" data-target="#modal-delete{{$d->id}}" class="btn badge-danger"><li class="fas fa-trash"> Delete</li></a>
                         </td>
                     </tr>
@@ -87,10 +107,10 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>Apakah anda yakin akan menghapus data ini <strong>{{$d->name}}</strong> &hellip;</p>
+              <p>Apakah anda yakin akan menghapus data ini <strong></strong> &hellip;</p>
             </div>
             <div class="modal-footer justify-content-between">
-              <form action="{{route('admin.user.delete', ['id'=>$d->id])}}" method="post">
+              <form action="{{route('admin.kas.delete', ['id'=>$d->id])}}" method="post">
                 @csrf
                 @method('DELETE')
               <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>

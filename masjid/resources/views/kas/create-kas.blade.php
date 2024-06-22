@@ -6,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Edit User</h1>
+            <h1 class="m-0">KAS MASJID</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Edit User</li>
+              <li class="breadcrumb-item active">Tambah Data</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -28,35 +28,51 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Form Edit User</h3>
+                <h3 class="card-title">Form Tambah Data</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{route('admin.user.update', ['id'=> $data->id])}}" method="post">
+              <form action="{{route('admin.kas.store')}}" method="post"  enctype="multipart/form-data">
                 @csrf
-                @method('put')
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" name="email" value="{{$data->email}}" id="exampleInputEmail1" placeholder="Enter email">
-                    @error('email')
+                    <label for="exampleInputEmail1">Tipe Kas</label>
+                    <select class="form-control" name="type" id="">
+                      <option value="">
+                            --
+                      </option>
+                      <option value="Kas masuk">
+                            Kas masuk
+                      </option>
+                      <option value="Kas keluar">
+                            Kas keluar
+                      </option>
+                    </select>
+                   
+                    @error('type')
                     <small>{{$message}}</small>
                     @enderror  
                 </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Name</label>
-                    <input type="text" name="name" class="form-control" value="{{$data->name}}" id="exampleInputEmail1" placeholder="Enter email">
-                     @error('name')
+                    <label for="exampleInputEmail1">Nominal</label>
+                    <input type="text"  type="number" step="0.01" name="nominal" class="form-control" id="exampleInputEmail1" placeholder="input nominal kas">
+                     @error('nominal')
                     <small>{{$message}}</small>
                     @enderror  
-                </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                   @error('password')
+                    <label for="exampleInputEmail1">Deskripsi</label>
+                    <input type="text" name="des" class="form-control" id="exampleInputEmail1" placeholder="Keterangan kas">
+                     @error('des')
+                    <small>{{$message}}</small>
+                    @enderror  
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Image</label>
+                    <input type="file" name="image" class="form-control" id="exampleInputEmail1" >
+                     @error('image')
                     <small>{{$message}}</small>
                     @enderror  
                 </div>
+            
                   
                 <!-- /.card-body -->
 

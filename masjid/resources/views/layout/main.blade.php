@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>SIMAS AL HIKMAH </title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -178,7 +178,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Welcome Admin</a>
         </div>
       </div>
 
@@ -200,7 +200,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -208,14 +208,28 @@
               </p>
             </a>
           <li class="nav-item">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+           <a href="{{ route('admin.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-user-alt"></i>
               <p>
                 User
                 <i class="right fas"></i>
               </p>
             </a>
+          <li class="nav-item">
+           <a href="{{ route('admin.kas.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-coins"></i>
+              <p>
+                KAS
+                <i class="right fas"></i>
+              </p>
+            </a>
             
+           <li class="nav-item">
+              <a href="{{ route('logout') }}" class="nav-link">
+               <i class="nav-icon fas fa-th"></i>
+                  <p> Logout        </p>
+              </a>
+          </li>
              
         </ul>
       </nav>

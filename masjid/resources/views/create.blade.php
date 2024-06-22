@@ -32,7 +32,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{route('user.store')}}" method="post">
+              <form action="{{route('admin.user.store')}}" method="post"  enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
@@ -45,6 +45,12 @@
                   <div class="form-group">
                     <label for="exampleInputEmail1">Name</label>
                     <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                     @error('name')
+                    <small>{{$message}}</small>
+                    @enderror  
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Image</label>
+                    <input type="file" name="image" class="form-control" id="exampleInputEmail1" >
                      @error('name')
                     <small>{{$message}}</small>
                     @enderror  
